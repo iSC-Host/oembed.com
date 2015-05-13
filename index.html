@@ -69,7 +69,7 @@
                     </div>
                 </div>
 
-                <div id="defaultCountdown"></div>
+                <div id="Countdown"></div>
 
                 <div id="cubes-wrapp">
                     <div class="element positioned item-1 days"></div>
@@ -357,7 +357,7 @@
         // Countdown
         var newYear = new Date(); 
         newYear = new Date(newYear.getFullYear() + 1, 1 - 1, 1); 
-        $('#defaultCountdown').countdown({until: });
+        $('#defaultCountdown').countdown({until: newYear});
 
         // Pulsate
         $('.linked').pulsate({
