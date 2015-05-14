@@ -1,0 +1,18 @@
+<a name="section4" id="section4"><h2>4. Discovery</h2></a>
+
+<p>oEmbed providers can choose to make their oEmbed support discoverable by adding elements to the head of their existing (X)HTML documents.</p>
+
+<p>For example:</p>
+
+<pre>
+&lt;link rel="alternate" type="application/json+oembed"
+  href="http://flickr.com/services/oembed?url=http%3A%2F%2Fflickr.com%2Fphotos%2Fbees%2F2362225867%2F&format=json"
+  title="Bacon Lollys oEmbed Profile" /&gt;
+&lt;link rel="alternate" type="text/xml+oembed"
+  href="http://flickr.com/services/oembed?url=http%3A%2F%2Fflickr.com%2Fphotos%2Fbees%2F2362225867%2F&format=xml"
+  title="Bacon Lollys oEmbed Profile" /&gt;
+</pre>
+
+<p>The URLs contained within the <code>href</code> attribute should be the full oEmbed endpoint plus URL and any needed format parameter. No other request parameters should be included in this URL.</p>
+
+<p>The <code>type</code> attribute must contain either <code>application/json+oembed</code> for JSON responses, or <code>text/xml+oembed</code> for XML.</p>
