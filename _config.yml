@@ -1,0 +1,13 @@
+# Site settings
+
+title: oEmbed
+email: 
+description: 
+
+baseurl:  # the subpath of your site, e.g. /blog/
+url: "http://isc-host.github.io/oembed.com" # the base hostname & protocol for your site
+files_url: http://isc-host.github.io/img/
+
+google_analytics_id: UA-XXXX
+
+repository: https://github.com/iSC-Host/oembed.com
