@@ -179,7 +179,7 @@
 
                 
                 
-                <form id="subscribe" action="#" method="posts">
+                <form id="subscribe" action="mail.php" method="posts">
                   <div class="large-10 columns inputSection">
                     <input type="email" name="email" placeholder="your email" value="">
                                       </div>
@@ -208,57 +208,57 @@
           </div>
           <div class="large-12 columns mix-wrapper">
             <ul id="mix-controls">
-                <li class="filter" data-filter="branding">Video</li>
-                <li class="filter" data-filter="web-design">Link</li>
-                <li class="filter" data-filter="logo-design">Other</li>
-                <li class="filter" data-filter="photography">Implementations</li>
+                <li class="filter" data-filter="video">Video</li>
+                <li class="filter" data-filter="link">Link</li>
+                <li class="filter" data-filter="other">Other</li>
+                <li class="filter" data-filter="implementations">Implementations</li>
             </ul>
 
             <ul id="grid">
-              <li class="mix web-design">
+              <li class="mix link">
                 <a rel="prettyPhoto" href="img/gallery/l1.jpg">
                   <span class="hoverEffect"></span>
                   <img src="img/gallery/1.jpg" height="214" width="246" alt="Featured Image">
                 </a>
               </li>
-              <li class="mix logo-design">
+              <li class="mix other">
                 <a rel="prettyPhoto" href="img/gallery/l2.jpg">
                   <span class="hoverEffect"></span>
                   <img src="img/gallery/2.jpg" height="214" width="246" alt="Featured Image">
                 </a>
               </li>
-              <li class="mix web-design">
+              <li class="mix link">
                 <a rel="prettyPhoto" href="img/gallery/l3.jpg">
                   <span class="hoverEffect"></span>
                   <img src="img/gallery/3.jpg" height="214" width="246" alt="Featured Image">
                 </a>
               </li>
-               <li class="mix branding">
+               <li class="mix video">
                 <a rel="prettyPhoto" href="img/gallery/l11.jpg">
                   <span class="hoverEffect"></span>
                   <img src="img/gallery/10.jpg" height="214" width="246" alt="Featured Image">
                 </a>
               </li>
-            <li class="mix web-design">
+            <li class="mix link">
                 <a rel="prettyPhoto" href="img/gallery/l11.jpg">
                   <span class="hoverEffect"></span>
                   <img src="img/gallery/11.jpg" height="214" width="246" alt="Featured Image">
                 </a>
               </li>
             
-              <li class="mix photography">
+              <li class="mix implementations">
                 <a rel="prettyPhoto" href="img/gallery/l7.jpg">
                   <span class="hoverEffect"></span>
                   <img src="img/gallery/7.jpg" height="214" width="246" alt="Featured Image">
                 </a>
               </li>
-              <li class="mix logo-design">
+              <li class="mix other">
                 <a rel="prettyPhoto" href="img/gallery/l8.jpg">
                   <span class="hoverEffect"></span>
                   <img src="img/gallery/8.jpg" height="214" width="246" alt="Featured Image">
                 </a>
               </li>
-              <li class="mix web-design">
+              <li class="mix link">
                 <a rel="prettyPhoto" href="img/gallery/l9.jpg">
                   <span class="hoverEffect"></span>
                   <img src="img/gallery/9.jpg" height="214" width="246" alt="Featured Image">
@@ -283,16 +283,17 @@
                 <p>Feel free to contact us at any time</p>
 
                 <ul>
-                  <li>+1 157 541 3587</li>
-                  <li>info@kinda.com</li>
-                  <li>Street Name 120 London, UK</li>
+                  <li>Cal Henderson (cal [at] iamcal.com)</li>
+                  <li>Mike Malone (mjmalone [at] gmail.com)</li>
+                  <li>Leah Culver (leah.culver [at] gmail.com)</li>
+                  <li>Richard Crowley (r [at] rcrowley.org)</li>
                 </ul>
               </div>
               <div class="large-6 columns contact-form">
 
                 
                 
-                <form action="#" method="#" id="contact-us">
+                <form action="mail.php" method="mail.php" id="contact-us">
                   <input type="name" name="name" placeholder="NAME" value="" class="txt requiredField">
                   
 
@@ -317,11 +318,9 @@
           <div class="row">
             <div class="large-4 columns">
               <ul id="socials">
-                <li><a href="#" target="_blank" class="link-ico-1">Facebook</a></li>
-                <li><a href="#" target="_blank" class="link-ico-2">Twitter</a></li>
-                <li><a href="#" target="_blank" class="link-ico-3">Vimeo</a></li>
-                <li><a href="#" target="_blank" class="link-ico-4">Dribbble</a></li>
-                <li><a href="#" target="_blank" class="link-ico-5">LinkedIn</a></li>
+                <li><a href="https://www.facebook.com/oembed" target="_blank" class="link-ico-1">Facebook</a></li>
+                <li><a href="https://twitter.com/oembed" target="_blank" class="link-ico-2">Twitter</a></li>
+                <li><a href="https://linkedin.com/#" target="_blank" class="link-ico-5">LinkedIn</a></li>
               </ul>
             </div>
             <div class="large-4 columns">
@@ -385,7 +384,7 @@
           filterSelector: '.filter',
           effects: ['fade','scale', 'blur'],
           multiFilter: true,
-          showOnLoad: 'web-design logo-design branding photography',
+          showOnLoad: 'link other video implementations',
           easing: 'windback',
           transitionSpeed: 916
         });
