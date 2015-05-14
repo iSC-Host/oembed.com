@@ -39,15 +39,6 @@
           <img src="img/loader.GIF" alt="loader">
         </div>
 
-	<!-- SCRIPTS -->
-        <script>
-	// Popup window code
-	function newPopup(url) {
-		popupWindow = window.open(
-			url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
-	}
-	</script>
-
         <div class="countdown-container">
             <div class="wrapper">
                 <div class="row header">
@@ -135,6 +126,13 @@
 
 
         <!-- About Container -->
+        <script>
+	// JavaScript popup window function
+		function basicPopup(url) {
+	popupWindow = window.open(url,'popUpWindow','height=300,width=700,left=50,top=50,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes')
+		}
+	</script>
+
         <div id="aboutSection" class="row aboutSection">
             <div class="large-6 columns">
                 <h2>About Us</h2>
@@ -149,25 +147,25 @@
                   <li>
                   <div class="slide-holder">
                       <img src="img/iphone.png" height="663" width="705" alt="iPhone Image">
-		      <a data-description="Quick Example" class="item info1" href="JavaScript:newPopup('http://isc-host.github.io/oembed.com/popups/quick_example.html');">+</a>
+		      <a data-description="Quick Example" class="item info1" href="http://isc-host.github.io/oembed.com/popups/quick_example.html" onclick="basicPopup(this.href);return false">+</a>
                   </div>    
                   </li>
                   <li>
                   <div class="slide-holder">
                       <img src="img/iphone.png" alt="iPhone Image" width="705" height="663">
-                      <a data-description="Full spec" class="item info1" href="JavaScript:newPopup('http://isc-host.github.io/oembed.com/popups/full_spec.html');">+</a>
+                      <a data-description="Full spec" class="item info1" href="http://isc-host.github.io/oembed.com/popups/full_spec.html" onclick="basicPopup(this.href);return false">+</a>
                   </div>    
                   </li>
                   <li>
                   <div class="slide-holder">
                       <img src="img/iphone.png" alt="iPhone Image" width="705" height="663">
-                      <a data-description="Security considerations" class="item info1" href="JavaScript:newPopup('http://isc-host.github.io/oembed.com/popups/security_considerations.html');">+</a>
+                      <a data-description="Security considerations" class="item info1" href="http://isc-host.github.io/oembed.com/popups/security_considerations.html" onclick="basicPopup(this.href);return false">+</a>
                   </div>    
                   </li>
                   <li>
                   <div class="slide-holder">
                       <img src="img/iphone.png" alt="iPhone Image" width="705" height="663">
-                      <a data-description="Discovery" class="item info1" href="JavaScript:newPopup('http://isc-host.github.io/oembed.com/popups/discovery.html');">+</a>
+                      <a data-description="Discovery" class="item info1" href="http://isc-host.github.io/oembed.com/popups/discovery.html" onclick="basicPopup(this.href);return false">+</a>
                   </div>    
                   </li>
                 </ul>
