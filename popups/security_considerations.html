@@ -1,0 +1,5 @@
+<a name="section3" id="section3"><h2>3. Security considerations</h2></a>
+
+<p>When a consumer displays any URLs, they will probably want to filter the URL scheme to be one of <code>http</code>, <code>https</code> or <code>mailto</code>, although providers are free to specify any valid URL. Without filtering, <code>Javascript:...</code> style URLs could be used for XSS attacks.</p>
+
+<p>When a consumer displays HTML (as with video embeds), there's a vector for XSS attacks from the provider. To avoid this, it is recommended that consumers display the HTML in an <code>iframe</code>, hosted from another domain. This ensures that the HTML cannot access cookies from the consumer domain.</p>
