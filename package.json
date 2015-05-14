@@ -1,0 +1,30 @@
+{
+  "name": "oembed.com",
+  "version": "1.0",
+  "description": "oEmbed is a format for allowing an embedded representation of a URL on third party sites. The simple API allows a website to display embedded content (such as photos or videos) when a user posts a link to that resource, without having to parse the resource directly.",
+  "keywords": [
+    "oembed.com",
+    "oembed",
+    "isc host",
+    "github pages",
+    "website",
+    "official"
+  ],
+  "homepage": "https://github.com/iSC-Host/oembed.com",
+  "bugs": "https://github.com/iSC-Host/oembed.com/issues",
+  "author": {
+    "name": "Suriyaa Kudo",
+    "email": "suriyaa@inc.isc",
+    "url": "http://bit.ly/Suriyaa"
+  },
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iSC-Host/oembed.git"
+  },
+  "licenses": [
+    {
+      "type": "Copyright (c) 2015 of Website"
+    }
+  ]
+}
