@@ -3,3 +3,216 @@
 <p>This spec is broken into three parts - configuration, the consumer request and the provider response.</p>
 
 <p>An oEmbed exchange occurs between a <i>consumer</i> and a <i>provider</i>. A <i>consumer</i> wishes to show an embedded representation of a third party resource on their own web site, such as a photo or an embedded video. A <i>provider</i> implements the oEmbed API to allow <i>consumers</i> to fetch that representation.</p>
+
+<a name="section2.1" id="section2.1"><h3>2.1. Configuration</h3></a>
+
+<p>Configuration for oEmbed is very simple. Providers must specify one or more URL scheme and API endpoint pairs. The URL scheme describes which URLs provided by the service may have an embedded representation. The API endpoint describes where the consumer may request representations for those URLs.</p>
+
+<p>For instance:</p>
+
+<ul>
+	<li> URL scheme: <code>http://www.flickr.com/photos/*</code> </li>
+	<li> API endpoint: <code>http://www.flickr.com/services/oembed/</code> </li>
+</ul>
+
+<p>The URL scheme may contain one or more wildcards (specified with an asterisk). Wildcards may be present in the domain portion of the URL, or in the path. Within the domain portion, wildcards may only be used for subdomains. Wildcards may not be used in the scheme (to support HTTP and HTTPS, provide two url/endpoint pairs).</p>
+
+<p>Some examples:</p>
+
+<ul>
+	<li> <code>http://www.flickr.com/photos/*</code> OK </li>
+	<li> <code>http://www.flickr.com/photos/*/foo/</code> OK </li>
+	<li> <code>http://*.flickr.com/photos/*</code> OK </li>
+	<li> <code>http://*.com/photos/*</code> NOT OK </li>
+	<li> <code>*://www.flickr.com/photos/*</code> NOT OK </li>
+</ul>
+
+<p>The API endpoint must point to an HTTP endpoint URL (not HTTPS) which implements the API described below.</p>
+
+
+<a name="section2.2" id="section2.2"><h3>2.2. Consumer Request</h3></a>
+
+<p>Requests sent to the API endpoint must be HTTP GET requests, with all arguments sent as query parameters. All arguments must be urlencoded (as per RFC 1738).</p>
+
+<p>The following query parameters are defined as part of the spec:</p>
+
+<dl>
+	<dt><b><code>url</code></b> (required)</dt>
+	<dd>The URL to retrieve embedding information for.</dd>
+
+	<dt><b><code>maxwidth</code></b> (optional)</dt>
+	<dd>The maximum width of the embedded resource. Only applies to some resource types (as specified below). For supported resource types, this parameter <i>must</i> be respected by providers.</dd>
+
+	<dt><b><code>maxheight</code></b> (optional)</dt>
+	<dd>The maximum height of the embedded resource. Only applies to some resource types (as specified below). For supported resource types, this parameter <i>must</i> be respected by providers.</dd>
+
+	<dt><b><code>format</code></b> (optional)</dt>
+	<dd>The required response format. When not specified, the provider can return any valid response format. When specified, the provider <i>must</i> return data in the request format, else return an error (see below for error codes).</dd>
+</dl>
+
+<p>Providers should ignore all other arguments it doesn't expect. Providers are welcome to support custom additional parameters.</p>
+
+<p>Some examples:</p>
+
+<ul>
+	<li> <code>http://flickr.com/services/oembed?url=http%3A//flickr.com/photos/bees/2362225867/</code> </li>
+	<li> <code>http://flickr.com/services/oembed?url=http%3A//flickr.com/photos/bees/2362225867/&amp;maxwidth=300&amp;maxheight=400&amp;format=json</code> </li>
+</ul>
+
+<p>Note: Providers may choose to have the format specified as part of the endpoint URL itself, rather than as a query string parameter.</p>
+
+<p>For instance:</p>
+
+<ul>
+	<li> URL scheme: <code>http://www.flickr.com/photos/*</code> </li>
+	<li> API XML endpoint: <code>http://www.flickr.com/services/oembed.xml</code> </li>
+	<li> API JSON endpoint: <code>http://www.flickr.com/services/oembed.json</code> </li>
+</ul>
+
+<p>In this case, the format parameter is not needed and will be ignored. When a provider publishes a URL scheme and API endpoint pair, they should clearly state whether the format is implicit in the endpoint or if it needs to be passed as an argument.</p>
+
+<a name="section2.3" id="section2.3"><h3>2.3. Provider Response</h3></a>
+
+<p>The response returned by the provider can be in either JSON or XML. Each format specifies a way of encoding name-value pairs which comprise the response data. Each format has an associated mime-type which must be returned in the <code>Content-type</code> header along with the response.</p>
+
+<h4>2.3.1. JSON response</h4>
+
+<p>JSON responses must contain well formed <a href="http://json.org/">JSON</a> and must use the mime-type of <code>application/json</code>. The JSON response format may be requested by the consumer by specifying a <code>format</code> of <code>json</code>.</p>
+
+<p>For example:</p>
+
+<pre>{
+	"foo": "bar",
+	"baz": 1
+}</pre>
+
+<p>The key-value pairs to be returned are specified below. All text must be UTF-8 encoded.</p>
+
+<h4>2.3.2. XML response</h4>
+
+<p>XML responses must use the mime-type of <code>text/xml</code>. The XML response format may be requested by the consumer by specifying a <code>format</code> of <code>xml</code>. The response body must contain well formed XML with a root element called <code>oembed</code> and child elements for each key containing the value within the element body. For example:</p>
+
+<pre>&lt;?xml version="1.0" encoding="utf-8" standalone="yes"?&gt;
+&lt;oembed&gt;
+	&lt;foo&gt;bar&lt;/foo&gt;
+	&lt;baz&gt;1&lt;/baz&gt;
+&lt;/oembed&gt;</pre>
+
+<p>The key-value pairs to be returned are specified below. All text must be UTF-8 encoded. Values should be escaped PCDATA. For example:</p>
+
+<pre>&lt;?xml version="1.0" encoding="utf-8" standalone="yes"?&gt;
+&lt;oembed&gt;
+	&lt;html&gt;&amp;lt;b&amp;gt;awesome!&amp;lt;/b&amp;gt;&lt;/html&gt;
+&lt;/oembed&gt;</pre>
+
+
+<h4>2.3.4. Response parameters</h4>
+
+<p>Responses can specify a resource type, such as <code>photo</code> or <code>video</code>. Each type has specific parameters associated with it. The following response parameters are valid for all response types:</p>
+
+<dl>
+	<dt><b><code>type</code></b> (required)</dt>
+	<dd>The resource type. Valid values, along with value-specific parameters, are described below.</dd>
+
+	<dt><b><code>version</code></b> (required)</dt>
+	<dd>The oEmbed version number. This must be <code>1.0</code>.</dd>
+
+	<dt><b><code>title</code></b> (optional)</dt>
+	<dd>A text title, describing the resource.</dd>
+
+	<dt><b><code>author_name</code></b> (optional)</dt>
+	<dd>The name of the author/owner of the resource.</dd>
+
+	<dt><b><code>author_url</code></b> (optional)</dt>
+	<dd>A URL for the author/owner of the resource.</dd>
+
+	<dt><b><code>provider_name</code></b> (optional)</dt>
+	<dd>The name of the resource provider.</dd>
+	
+	<dt><b><code>provider_url</code></b> (optional)</dt>
+	<dd>The url of the resource provider.</dd>
+
+	<dt><b><code>cache_age</code></b> (optional)</dt>
+	<dd>The <i>suggested</i> cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.</dd>
+
+	<dt><b><code>thumbnail_url</code></b> (optional)</dt>
+	<dd>A URL to a thumbnail image representing the resource. The thumbnail must respect any <code>maxwidth</code> and <code>maxheight</code> parameters. If this parameter is present, <code>thumbnail_width</code> and <code>thumbnail_height</code> must also be present.</dd>
+
+	<dt><b><code>thumbnail_width</code></b> (optional)</dt>
+	<dd>The width of the optional thumbnail. If this parameter is present, <code>thumbnail_url</code> and <code>thumbnail_height</code> must also be present.</dd>
+
+	<dt><b><code>thumbnail_height</code></b> (optional)</dt>
+	<dd>The height of the optional thumbnail. If this parameter is present, <code>thumbnail_url</code> and <code>thumbnail_width</code> must also be present.</dd>
+</dl>
+
+<p>Providers may optionally include any parameters not specified in this document (so long as they use the same key-value format) and consumers may choose to ignore these. Consumers must ignore parameters they do not understand.</p>
+
+<h4>2.3.4.1. The <code>photo</code> type</h4>
+
+<p>This type is used for representing static photos. The following parameters are defined:</p>
+
+<dl>
+	<dt><b><code>url</code></b> (required)</dt>
+	<dd>The source URL of the image. Consumers should be able to insert this URL into an <code>&lt;img&gt;</code> element. Only HTTP and HTTPS URLs are valid.</dd>
+
+	<dt><b><code>width</code></b> (required)</dt>
+	<dd>The width in pixels of the image specified in the <code>url</code> parameter.</dd>
+
+	<dt><b><code>height</code></b> (required)</dt>
+	<dd>The height in pixels of the image specified in the <code>url</code> parameter.</dd>
+</dl>
+
+<p>Responses of this type must obey the <code>maxwidth</code> and <code>maxheight</code> request parameters.</p>
+
+<h4>2.3.4.2. The <code>video</code> type</h4>
+
+<p>This type is used for representing playable videos. The following parameters are defined:</p>
+
+<dl>
+	<dt><b><code>html</code></b> (required)</dt>
+	<dd>The HTML required to embed a video player. The HTML should have no padding or margins. Consumers may wish to load the HTML in an off-domain iframe to avoid XSS vulnerabilities.</dd>
+
+	<dt><b><code>width</code></b> (required)</dt>
+	<dd>The width in pixels required to display the HTML.</dd>
+
+	<dt><b><code>height</code></b> (required)</dt>
+	<dd>The height in pixels required to display the HTML.</dd>
+</dl>
+
+<p>Responses of this type must obey the <code>maxwidth</code> and <code>maxheight</code> request parameters. If a provider wishes the consumer to just provide a thumbnail, rather than an embeddable player, they should instead return a <code>photo</code> response type.</p>
+
+<h4>2.3.4.3. The <code>link</code> type</h4>
+
+<p>Responses of this type allow a provider to return any generic embed data (such as <code>title</code> and <code>author_name</code>), without providing either the url or html parameters. The consumer may then link to the resource, using the URL specified in the original request.</p>
+
+<h4>2.3.4.4. The <code>rich</code> type</h4>
+
+<p>This type is used for rich HTML content that does not fall under one of the other categories. The following parameters are defined:</p>
+
+<dl>
+	<dt><b><code>html</code></b> (required)</dt>
+	<dd>The HTML required to display the resource. The HTML should have no padding or margins. Consumers may wish to load the HTML in an off-domain iframe to avoid XSS vulnerabilities. The markup should be valid XHTML 1.0 Basic.</dd>
+
+	<dt><b><code>width</code></b> (required)</dt>
+	<dd>The width in pixels required to display the HTML.</dd>
+
+	<dt><b><code>height</code></b> (required)</dt>
+	<dd>The height in pixels required to display the HTML.</dd>
+</dl>
+
+<p>Responses of this type must obey the <code>maxwidth</code> and <code>maxheight</code> request parameters.</p>
+
+<h4>2.3.5. Errors</h4>
+
+<p>Providers should return any error conditions as HTTP status codes. The following status codes are defined as part of the oEmbed specification:</p>
+
+<dl>
+	<dt><b><code>404 Not Found</code></b></dt>
+	<dd>The provider has no response for the requested <code>url</code> parameter. This allows providers to be broad in their URL scheme, and then determine at call time if they have a representation to return.</dd>
+
+	<dt><b><code>501 Not Implemented</code></b></dt>
+	<dd>The provider cannot return a response in the requested format. This should be sent when (for example) the request includes <code>format=xml</code> and the provider doesn't support XML responses. However, providers are encouraged to support both JSON and XML.</dd>
+
+	<dt><b><code>401 Unauthorized</code></b></dt>
+	<dd>The specified URL contains a private (non-public) resource. The consumer should provide a link directly to the resource instead of any embedding any extra information, and rely on the provider to provide access control.</dd>
+</dl>
