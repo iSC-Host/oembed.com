@@ -342,7 +342,44 @@
             </div>
           </div>
         </div>
-       
+
+<!-- Google Social Profiles Links -->
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "oEmbed",
+  "url" : "http://oembed.com/",
+  "sameAs" : [ "https://www.facebook.com/oembed",
+      "https://twitter.com/oembed",
+      "https://www.youtube.com/user/oembed"] 
+}
+</script>
+
+<!-- Google Sitelinks Search Box -->
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "http://oembed.com/",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "http://oembed.com/search/?q={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+</script>
+
+<!-- Google - Show Your Site Name in Search -->
+<script type="application/ld+json">
+    {  "@context" : "http://schema.org",
+       "@type" : "WebSite",
+       "name" : "oEmbed",
+       "alternateName" : "oembed",
+       "url" : "http://oembed.com/"
+    }
+</script>
+
+<!-- END -->
 
         <!-- jQuery Library -->
         <script src="../../../ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
