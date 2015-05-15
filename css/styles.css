@@ -585,10 +585,10 @@ About Container
 
 
 /*###################################################################
-Subscribe Container
+Provider Container
 ###################################################################*/
 
-.subscribe-container {
+.provider-container {
 	margin-top: 140px;
 	padding-top: 220px;
 	padding-bottom: 200px;
@@ -599,7 +599,7 @@ Subscribe Container
 	background-size: cover;
 }
 
-.subscribe-container h5 {
+.provider-container h5 {
 	text-align: center;
 	color: #fff;
 	font-family: 'Lato', sans-serif;
@@ -612,28 +612,28 @@ Subscribe Container
 
 
 
-.subscribe-container ::-webkit-input-placeholder {
+.provider-container ::-webkit-input-placeholder {
    font-family: 'Lato', sans-serif;
    text-transform: lowercase;
    color: #515050;
    font-weight: 300;
 }
 
-.subscribe-container :-moz-placeholder { /* Firefox 18- */
+.provider-container :-moz-placeholder { /* Firefox 18- */
    font-family: 'Lato', sans-serif;  
    text-transform: lowercase;
    color: #515050;
    font-weight: 300;
 }
 
-.subscribe-container ::-moz-placeholder {  /* Firefox 19+ */
+.provider-container ::-moz-placeholder {  /* Firefox 19+ */
    font-family: 'Lato', sans-serif;  
    text-transform: lowercase;
    color: #515050;
    font-weight: 300;
 }
 
-.subscribe-container :-ms-input-placeholder {  
+.provider-container :-ms-input-placeholder {  
    font-family: 'Lato', sans-serif;  
    text-transform: lowercase;
    color: #515050;
@@ -674,7 +674,7 @@ Subscribe Container
 	text-shadow: 1px 1px 3px rgba(0,0,0, 0.8);
 }
 
-.subscribe-container .row .large-10, .subscribe-container .row .large-2 {
+.provider-container .row .large-10, .provider-container .row .large-2 {
 	padding: 0;
 }
 
