@@ -2,12 +2,12 @@
 
 title: oEmbed
 email: 
-description: 
+description:  oEmbed is a format for allowing an embedded representation of a URL on third party sites. 
 
 baseurl:  # the subpath of your site, e.g. /blog/
 url: "http://isc-host.github.io/oembed.com" # the base hostname & protocol for your site
 files_url: http://isc-host.github.io/img/
 
-google_analytics_id: UA-XXXX
+google_analytics_id: UA-.....
 
 repository: https://github.com/iSC-Host/oembed.com
