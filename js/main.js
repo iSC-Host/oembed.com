@@ -67,7 +67,7 @@
 	$('.tweets').tweetable({
 		html5: true,
 		time: true,
-	    username: 'avathemes',
+	    username: 'oembed',
 	    limit: 10,
 	    rotate: true,
 	    speed: 5500,
