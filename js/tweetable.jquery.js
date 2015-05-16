@@ -113,18 +113,18 @@
 
 	// Define plugin defaults
 	$.fn.tweetable.options = {
-		limit: 5,                       // Number of tweets to show
-		username: 'philipbeel',         // @username tweets to display
-		time: false,                    // Display date
-		rotate: false,                  // Rotate tweets
-		speed: 5000,                    // Speed of rotation
-		replies: false,                 // Filter out @replys
-		position: 'append',             // Append position
-		failed: "No tweets available",  // Twitter stream unavailable text
-		loading: "Loading tweets...",	// Tweets loading message
-		html5: false,                   // HTML5 Support
-		retweets: false,                // Show retweets
-		onComplete: function($ul) {}    // On complete callback
+		limit: 4,       		                // Number of tweets to show
+		username: 'oembed',             		// @username tweets to display
+		time: false,    			       	// Display date
+		rotate: false,                  		// Rotate tweets
+		speed: 5000,                    		// Speed of rotation
+		replies: false,                 		// Filter out @replys
+		position: 'append',             		// Append position
+		failed: "Sorry, no tweets available :-(",  	// Twitter stream unavailable text
+		loading: "Loading tweets...",			// Tweets loading message
+		html5: false,                   		// HTML5 Support
+		retweets: false,                		// Show retweets
+		onComplete: function($ul) {}    		// On complete callback
 	};
 
 })(jQuery);
