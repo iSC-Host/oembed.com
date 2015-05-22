@@ -122,7 +122,7 @@
 		position: 'append',             		// Append position
 		failed: "Sorry, no tweets available :-(",  	// Twitter stream unavailable text
 		loading: "Loading tweets...",			// Tweets loading message
-		html5: true	                   		// HTML5 Support
+		html5: true,	                   		// HTML5 Support
 		retweets: false,                		// Show retweets
 		onComplete: function($ul) {}    		// On complete callback
 	};
